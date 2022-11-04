@@ -68,7 +68,16 @@ header {
 }
 
 .card {
+	display: flex;
+	justify-content: left;
 	width: 200px;
 	height: 250px;
 	background-color: hsla(31, 100%, 21%, 1);
+	color: white;
+	font-size: 20px;
+}
+
+.info {
+	color: white;
+	margin: 10px 0px 0px 10px;
 }

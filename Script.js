@@ -24,8 +24,22 @@ addBookToLibrary(book3);
 bookArray.forEach((book) => {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.setAttribute('id', 'card');
     document.getElementById("content").appendChild(card);
 });
+
+let elements = document.getElementsByTagName('div');
+for (let i = 0; i < elements.length; i++) {
+    let title = bookArray[i].title;
+    let author = bookArray[i].author;
+    let pages = bookArray[i].pages;
+    let read = bookArray[i].read;
+    card[i].innerHTML = `<h3 class="info">
+    Title: ${title}<br><br>
+    Author: ${author}<br><br>
+    Pages: ${pages}<br><br>
+    Read: ${read} </h3>`;
+}
 
 console.log(book1.info());
 console.log(bookArray);
