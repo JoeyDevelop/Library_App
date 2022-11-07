@@ -8,8 +8,31 @@
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
-    <header></header>
-    <div class="content" id="content"></div>
+    <header class="no_blur">
+        <h1 class="title">Library</h1>
+        <button class="add_Book">New Book</button>
+        <div class="form_container" id="form_container">
+            <form id="form">
+                <label for="title">Title:</label><br>
+                    <input type="text" id="title" name="title" value=""><br><br>
+                <label for="author" class="input_title">Author:</label><br>
+                    <input type="text" id="author" name="author"><br><br>
+                <label for="pages" class="input_title">Pages:</label><br>
+                    <input type="number" id="pages" name="pages"><br><br>
+                <label for="read" class="input_title">Read:</label>
+                <div class="radio_buttons" >
+                    <label for="yes">Yes</label>
+                        <input type="radio" id="yes" name="read">
+                    <label for="no" id="radio_button_right">No</label>
+                        <input type="radio" id="no" name="read"></div>
+                <div class="cancel_submit">
+                    <button class="cancel_submit_buttons" id="cancel_button" type="button" id="reset">Cancel</button>
+                    <button class="cancel_submit_buttons">Submit</button>
+                </div>
+            </form>
+        </div>
+    </header>
+    <div class="content no_blur" id="content"></div>
 <script src="Script.js"></script>
 </body>
 </html>

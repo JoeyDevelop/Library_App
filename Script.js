@@ -1,17 +1,20 @@
 let bookArray = []
-const book1 = new book("The Giver", "Lois Lowry", 240, true);
-const book2 = new book("The Dev", "Joey", 300, true);
-const book3 = new book("The Pharmacist", "Harrill", 287, false);
 
-function book (title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.info = function() {
-        return title + ", " + author + ", " + pages + ", " + read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.info = function () {
+            return this.title + ", " + this.author + ", " + this.pages + ", " + this. read;
+        };
     }
 }
+
+const book1 = new Book("The Giver", "Lois Lowry", 240, true);
+const book2 = new Book("The Dev", "Joey", 300, true);
+const book3 = new Book("The Pharmacist", "Harrill", 287, false);
 
 function addBookToLibrary(book) {
     bookArray.push(book)
@@ -28,7 +31,7 @@ bookArray.forEach((book) => {
     document.getElementById("content").appendChild(card);
 });
 
-let elements = document.getElementsByTagName('div');
+let elements = document.getElementsByClassName("card");
 for (let i = 0; i < elements.length; i++) {
     let title = bookArray[i].title;
     let author = bookArray[i].author;
@@ -43,3 +46,32 @@ for (let i = 0; i < elements.length; i++) {
 
 console.log(book1.info());
 console.log(bookArray);
+
+function addBlur() {
+    let form = document.querySelector("#form_container")
+    form.style["visibility"] = "visible";
+    let blur = document.querySelectorAll(".no_blur");
+    blur[0].classList.add("blur");
+    blur[1].classList.add("blur");
+}
+
+function cancel(){
+    let form = document.querySelector("#form_container");
+    form.style["visibility"] = "hidden";
+    let blur = document.querySelectorAll(".no_blur");
+    blur[0].classList.remove("blur");
+    blur[1].classList.remove("blur");
+    document.getElementById("form").reset();
+}
+
+let newBookButton = document.querySelector(".add_Book");
+newBookButton.addEventListener("click", (event) => {
+    addBlur();
+    event.preventDefault();
+});
+
+let cancelButton = document.getElementById("cancel_button");
+cancelButton.addEventListener("click", (event) => {
+    cancel();
+    event.preventDefault();
+});
