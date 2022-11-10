@@ -1,6 +1,3 @@
-let bookArray = []
-let cardArray = []
-
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -13,30 +10,24 @@ class Book {
     }
 }
 
-// const book1 = new Book("The Giver", "Lois Lowry", 240, "Yes");
-// const book2 = new Book("The Dev", "Joey", 300, true);
-// const book3 = new Book("The Pharmacist", "Harrill", 287, false);
+let books = []
 
-function addBookToLibrary(book) {
-    bookArray.push(book)
-}
+const newBookBtn = document.querySelector(".add_Book");
+newBookBtn.addEventListener("click", () => {
+    newBook();
+});
 
-let elements = document.getElementsByClassName("card");
-for (let i = 0; i < elements.length; i++) {
-    let title = bookArray[i].title;
-    let author = bookArray[i].author;
-    let pages = bookArray[i].pages;
-    let read = bookArray[i].read;
-    card[i].innerHTML = `<h3 class="info">
-    Title: ${title}<br><br>
-    Author: ${author}<br><br>
-    Pages: ${pages}<br><br>
-    Read: ${read} </h3>`;
-}
+const cancelFormBtn = document.querySelector("#cancel_button");
+cancelFormBtn.addEventListener("click", () => {
+    cancelButton();
+})
 
-console.log(bookArray);
+const submitBtn = document.querySelector("#submit_button");
+submitBtn.addEventListener("click", (event) => {
+    submitButton(event);
+})
 
-function addBlur() {
+function newBook() {
     let form = document.querySelector("#form_container")
     form.style["visibility"] = "visible";
     let blur = document.querySelectorAll(".no_blur");
@@ -44,63 +35,49 @@ function addBlur() {
     blur[1].classList.add("blur");
 }
 
-function cancel(){
-    let form = document.querySelector("#form_container");
+function cancelButton() {
+    let form = document.querySelector("#form_container")
     form.style["visibility"] = "hidden";
     let blur = document.querySelectorAll(".no_blur");
-    blur[0].classList.remove("blur");
-    blur[1].classList.remove("blur");
+    blur[0].classList.remove("blur")
+    blur[1].classList.remove("blur")
     document.getElementById("form").reset();
 }
 
-let newBookButton = document.querySelector(".add_Book");
-newBookButton.addEventListener("click", (event) => {
-    addBlur();
+function submitButton(event) {
     event.preventDefault();
-});
+    let content = document.querySelector("#content");
 
-let cancelButton = document.getElementById("cancel_button");
-cancelButton.addEventListener("click", (event) => {
-    cancel();
-    event.preventDefault();
-});
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-let submitButton = document.querySelector("#submit_button")
-submitButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    let title = document.querySelector("#title").value;
-    let author = document.querySelector("#author").value;
-    let pages = document.querySelector("#pages").value;
-    let read = document.querySelector('[name="read"]:checked').value;
-    let book = new Book (title, author, pages, read);
-    addBookToLibrary(book);
-    console.log(bookArray, cardArray)
-    if (cardArray.length < bookArray.length) {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.setAttribute('id', 'card');
-        cardArray.push("#card");
-        console.log(cardArray)
-        document.getElementById("content").appendChild(card);
-        } else {
-            return
-        }
-    let elements = document.getElementsByClassName("card");
-    for (let i = 0; i < elements.length; i++) {
-        let title = bookArray[i].title;
-        let author = bookArray[i].author;
-        let pages = bookArray[i].pages;
-        let read = bookArray[i].read;
-            card.innerHTML = `<h3 class="info">
-            Title: ${title}<br><br>
-            Author: ${author}<br><br>
-            Pages: ${pages}<br><br>
-            Read: ${read} </h3>`;
+    const title = document.querySelector("#titlee").value;
+    let titleNode = document.createElement("h3");
+    titleNode.classList.add("info");
+    titleNode.innerHTML = `Title: ${title}`
 
-            // card[i].innerHTML = `<h3 class="info">
-            // Title: ${title}<br><br>
-            // Author: ${author}<br><br>
-            // Pages: ${pages}<br><br>
-            // Read: ${read} </h3>`;
-    }
-})
+    const author = document.querySelector("#author").value;
+    let authorNode = document.createElement("h3");
+    authorNode.classList.add("info");
+    authorNode.innerHTML = `Author: ${author}`
+
+    const pages = document.querySelector("#pages").value;
+    let pagesNode = document.createElement("h3");
+    pagesNode.classList.add("info");
+    pagesNode.innerHTML = `Pages: ${pages}`
+
+    const read = document.querySelector('[name="read"]:checked').value;
+    let readNode = document.createElement("h3");
+    readNode.classList.add("info");
+    readNode.innerHTML = `Read: ${read}`
+
+    const book = new Book(title, author, pages, read);
+    books.push(book);
+    card.appendChild(titleNode);
+    card.appendChild(authorNode);
+    card.appendChild(pagesNode);
+    card.appendChild(readNode);
+    content.appendChild(card);
+    cancelButton();
+}
+
