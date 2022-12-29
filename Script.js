@@ -35,11 +35,6 @@ function cancelButton() {
     document.getElementById("form").reset();
 }
 
-const submitBtn = document.querySelector("#submit_button");
-submitBtn.addEventListener("click", (event) => {
-    submitButton(event);
-})
-
 function submitButton(event, i) {
     event.preventDefault();
     let content = document.querySelector("#content");
